@@ -1,0 +1,15 @@
+{
+  "name": "github-clubhouse-sync",
+  "version": "1.0.0",
+  "main": "entrypoint.js",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "esm": "^3.2.25",
+    "github-clubhouse": "presslabs/github-clubhouse#master",
+    "lodash": "^4.17.11"
+  },
+  "dependencies": {
+    "date-fns": "^2.0.0-alpha.27"
+  }
+}
