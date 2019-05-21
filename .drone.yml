@@ -1,0 +1,9 @@
+pipeline:
+  publish-docker-image:
+      image: plugins/docker
+      registry: quay.io
+      repo: quay.io/presslabs/github-clubhouse-sync
+      username: presslabs+drone
+      secrets:
+        - source: QUAY_TOKEN
+          target: DOCKER_PASSWORD
