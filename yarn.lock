@@ -62,13 +62,15 @@ esm@^3.2.25:
 
 github-clubhouse@presslabs/github-clubhouse#master:
   version "0.5.0"
-  resolved "https://codeload.github.com/presslabs/github-clubhouse/tar.gz/54db99bd087ff584849dfa5cc2f04dba3f1b578f"
+  resolved "https://codeload.github.com/presslabs/github-clubhouse/tar.gz/b7f9b6f178b1d79ed75bd21c696c664a0dc18eaf"
   dependencies:
     await-sleep "^0.0.1"
     babel-runtime "^6.20.0"
     bluebird "^3.5.0"
     build-url "^1.1.2"
     camelcase-object "^1.0.0"
+    loadsh "^0.0.4"
+    lodash "^4.17.11"
     minimist "^1.2.0"
     node-fetch "^1.6.3"
     parse-link-header "^0.4.1"
@@ -84,6 +86,11 @@ is-stream@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/is-stream/-/is-stream-1.1.0.tgz#12d4a3dd4e68e0b79ceb8dbc84173ae80d91ca44"
   integrity sha1-EtSj3U5o4Lec6428hBc66A2RykQ=
+
+loadsh@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/loadsh/-/loadsh-0.0.4.tgz#5314babd12bb13315dde024a4ca70758c5489d2d"
+  integrity sha512-U+wLL8InpfRalWrr+0SuhWgGt10M4OyAk6G8xCYo2rwpiHtxZkWiFpjei0vO463ghW8LPCdhqQxXlMy2qicAEw==
 
 lodash@^4.17.11:
   version "4.17.11"

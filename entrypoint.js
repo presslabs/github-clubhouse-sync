@@ -1,6 +1,6 @@
 #!/usr/bin/env node -r esm
 
-import { map, join, isNumber } from 'lodash'
+import { map, join, isInteger } from 'lodash'
 import { githubIssueToClubhouseStory } from 'github-clubhouse'
 import { format, subMinutes } from 'date-fns'
 import fs from 'fs'
@@ -49,7 +49,7 @@ async function importAllIssues(syncInterval) {
 }
 
 function createDateFilter(intervalInMinutes) {
-    if (!isNumber(parseInt(intervalInMinutes))) {
+    if (!isInteger(parseInt(intervalInMinutes))) {
         return null
     }
     const createDateLimit = subMinutes(Date.now(), parseInt(intervalInMinutes))
