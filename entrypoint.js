@@ -22,7 +22,7 @@ if (!process.env.CLUBHOUSE_TOKEN) {
     process.exit(1)
 }
 
-function importIssue({ repo, project, query }) {
+function importIssuesFromRepo({ repo, project, query }) {
     return githubIssueToClubhouseStory({
         githubToken      : process.env.GITHUB_TOKEN,
         clubhouseToken   : process.env.CLUBHOUSE_TOKEN,
@@ -34,14 +34,14 @@ function importIssue({ repo, project, query }) {
     })
 }
 
-async function importIssues(syncInterval) {
+async function importAllIssues(syncInterval) {
     const query = join([
       'state:open',
       createDateFilter(syncInterval)
     ], ' ')
 
     await Promise.all(map(PROJECT_MAPPING, async (project, repo) => (
-        await importIssue({ repo, project, query })
+        await importIssuesFromRepo({ repo, project, query })
     )))
 
     console.log('\nSynced.')
@@ -55,7 +55,7 @@ function createDateFilter(intervalInMinutes) {
     return `created:>${format(createDateLimit, "yyyy-MM-dd'T'HH:mm:ssxxx")}`
 }
 
-importIssues(process.env.SYNC_INTERVAL)
+importAllIssues(process.env.SYNC_INTERVAL)
     .catch((e) => {
         console.log(e)
         process.exit(1)
