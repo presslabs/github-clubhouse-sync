@@ -1,0 +1,12 @@
+image: quay.io/presslabs/github-clubhouse-sync
+
+env:
+  GITHUB_TOKEN: "token"
+  CLUBHOUSE_TOKEN: "token"
+  PROJECT_MAPPING_PATH: /opt/github-clubhouse-sync/project-mapping
+
+cronjob:
+  schedule: "*/1 * * * *"
+  concurrencyPolicy: "Forbid"
+  failedJobsHistoryLimit: "10"
+  successfulJobsHistoryLimit: "10"

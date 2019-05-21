@@ -1,0 +1,52 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    app: {{ template "name" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  annotations:
+spec:
+  schedule: "{{ .Values.cronjob.schedule }}"
+  {{- with .Values.cronjob.concurrencyPolicy }}
+  concurrencyPolicy: {{ . }}
+  {{- end }}
+  {{- with .Values.cronjob.failedJobsHistoryLimit }}
+  failedJobsHistoryLimit: {{ . }}
+  {{- end }}
+  {{- with .Values.cronjob.successfulJobsHistoryLimit }}
+  successfulJobsHistoryLimit: {{ . }}
+  {{- end }}
+  jobTemplate:
+    metadata:
+      labels:
+        app: {{ template "name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      template:
+        metadata:
+          labels:
+            app: {{ template "name" . }}
+            release: {{ .Release.Name }}
+          annotations:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: {{ .Chart.Name }}
+              image: {{ .Values.image }}
+              env:
+                - name: GITHUB_TOKEN
+                  value: {{ .Values.env.GITHUB_TOKEN }}
+                - name: CLUBHOUSE_TOKEN
+                  value: {{ .Values.env.CLUBHOUSE_TOKEN }}
+                - name: PROJECT_MAPPING_PATH
+                  value: {{ .Values.env.PROJECT_MAPPING_PATH }}
+              volumeMounts:
+                - name: config
+                  subPath: mapping.json
+                  mountPath: {{ .Values.env.PROJECT_MAPPING_PATH }}
+          volumes:
+            - name: config
+              configMap:
+                name: project-mapping
