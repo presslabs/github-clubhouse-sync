@@ -1,5 +1,3 @@
-#!/usr/bin/env node -r esm
-
 import { map, join, isInteger } from 'lodash'
 import { githubIssueToClubhouseStory } from 'github-clubhouse'
 import { format, subMinutes } from 'date-fns'
