@@ -7,3 +7,13 @@ pipeline:
       secrets:
         - source: QUAY_TOKEN
           target: DOCKER_PASSWORD
+
+  deploy:
+    image: gcr.io/pl-infra/kluster-deploy:latest
+    pull: true
+    secrets:
+      - GOOGLE_CREDENTIALS
+    commands:
+      - /usr/local/bin/setup-credentials-helper.sh
+      - cd /src/production/github-clubhouse-sync
+      - make
